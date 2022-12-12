@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,10 +46,29 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
         // Calling Animations Here
-        //if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
-        //{
-        //    animator.SetBool("isRunning".true);
-        // }
+        if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+            animator.SetBool("isRunning", false);
+
+        if (rb.velocity.y == 0)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+        }
+
+        if (rb.velocity.y > 0)
+        {
+            animator.SetBool("isJumping", true);
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", true);
+        }
 
         // RESPAWN 
         fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
@@ -90,9 +110,24 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "trap")
         {
             anim.SetTrigger("hurt");
-
-
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex);
+        }
+        if (collision.gameObject.tag == "finish")
+        {
+            int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currenSceneIndex + 1);
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "falldetector")
+        {
+            transform.position = respawnPoint;
+        }
+    }
+    // Create animations as named here
+    // tags as named here
+    // For player -> rigidbody 2D, sleepingmode: Neversleep, Interpolate: interpolate, constraint: freeze rotation on z axis
 }
