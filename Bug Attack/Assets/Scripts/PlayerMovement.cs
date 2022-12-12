@@ -49,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    animator.SetBool("isRunning".true);
        // }
+
+        // RESPAWN 
+        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y)
         
     }
 
@@ -82,6 +85,12 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.GameObject.tag == "trap")
+        {
+            anim.SetTrigger("hurt")
+        }
+    }
 
 }
