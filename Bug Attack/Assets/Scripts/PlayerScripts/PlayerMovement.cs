@@ -22,34 +22,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         // Get animator if using animations
-        
     }
 
-    private void Start()
+   void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         localScale = transform.localScale;
-        moveSpeed = 5f;
+        moveSpeed = 35f;
         respawnPoint = transform.position;
     }
 
-    private void Update()
-    {
+   void Update()
+   {
+
+
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        transform.position += new Vector3(dirX * Time.deltaTime, 0, 0);
+        
+
         if (Input.GetButtonDown("Jump") && rb.velocity.y == 0 && IsGrounded())
-        rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        
+        // TESTING JUMP
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Player Trying to Jump");
+
+        }
+
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+
+
         // Calling Animations Here
-        if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
-        {
+/*        if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
             animator.SetBool("isRunning", true);
-        }
         else
             animator.SetBool("isRunning", false);
 
@@ -69,11 +82,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", true);
         }
-
+*/
         // RESPAWN 
-        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
-        
-    }
+        //fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
+
+   }
 
     private void FixedUpdate()
     {
