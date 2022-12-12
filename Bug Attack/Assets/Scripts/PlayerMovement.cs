@@ -44,14 +44,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-         // Calling Animations Here
+        // Calling Animations Here
         //if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
         //{
         //    animator.SetBool("isRunning".true);
-       // }
+        // }
 
         // RESPAWN 
-        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y)
+        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
         
     }
 
@@ -87,9 +87,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.GameObject.tag == "trap")
+        if (collision.gameObject.tag == "trap")
         {
-            anim.SetTrigger("hurt")
+            anim.SetTrigger("hurt");
+
+
         }
     }
 
