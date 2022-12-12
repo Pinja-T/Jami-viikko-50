@@ -107,13 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "trap")
+        if (collision.gameObject.tag == "Trap")
         {
-            anim.SetTrigger("hurt");
+            anim.SetTrigger("Hurt");
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentSceneIndex);
         }
-        if (collision.gameObject.tag == "finish")
+        if (collision.gameObject.tag == "Finish")
         {
             int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currenSceneIndex + 1);
@@ -122,11 +122,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "falldetector")
+        if (collision.gameObject.tag == "Falldetector")
         {
             transform.position = respawnPoint;
         }
     }
+    // TODO:
     // Create animations as named here
     // tags as named here
     // For player -> rigidbody 2D, sleepingmode: Neversleep, Interpolate: interpolate, constraint: freeze rotation on z axis
