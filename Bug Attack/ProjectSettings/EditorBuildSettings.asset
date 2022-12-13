@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Menu.unity
     guid: 99614de0b380c6d45a59ce8f7388c43a
   - enabled: 1
+    path: Assets/Scenes/TestForEnemyAI.unity
+    guid: 882bbf2698d0f29449f588540a7448a1
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Levels/Pause.unity
+    guid: 42ae09e9af97b0440a25a7828d32eae7
   m_configObjects: {}
