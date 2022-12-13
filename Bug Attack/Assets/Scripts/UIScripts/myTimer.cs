@@ -20,7 +20,7 @@ public class myTimer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (takingAway == false && secondsLeft >= 0)
+        if (takingAway == false && secondsLeft > 0)
         {
             StartCoroutine(TimerTake());
         }
@@ -30,7 +30,7 @@ public class myTimer : MonoBehaviour
     {
         takingAway = true;
         yield return new WaitForSeconds(1);
-        secondsLeft += 1;
+        secondsLeft -= 1;
         if (secondsLeft < 10)
         {
             textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
@@ -41,7 +41,7 @@ public class myTimer : MonoBehaviour
         }
         takingAway = false;
 
-        if (secondsLeft >= 30)
+        if (secondsLeft <= 0)
         {
             TimeIsUp();
         }
