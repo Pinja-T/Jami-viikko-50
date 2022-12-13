@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Menu.unity
     guid: 99614de0b380c6d45a59ce8f7388c43a
   - enabled: 1
-    path: Assets/Scenes/TestForEnemyAI.unity
-    guid: 882bbf2698d0f29449f588540a7448a1
+    path: Assets/Scenes/Spritet.unity
+    guid: 8c1a20676214bb2499a6f3ebebdfc81a
   m_configObjects: {}

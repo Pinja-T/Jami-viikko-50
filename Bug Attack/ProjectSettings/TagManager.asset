@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hurt
   - Trap
+  - FallDetector
   layers:
   - Default
   - TransparentFX
