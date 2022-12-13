@@ -55,6 +55,8 @@ public class myTimer : MonoBehaviour
         LevelManager.instance.GameOver();
         gameObject.SetActive(false);
         GetComponent<PlayerMovement>().enabled = false;
+
+        // TODO: ADD TIME OUT SCREEN
     }
 }
 

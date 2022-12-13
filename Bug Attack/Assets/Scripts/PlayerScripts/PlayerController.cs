@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -39,11 +39,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 newVelocity;
     private Vector2 newForce;
     private Vector2 capsuleColliderSize;
-
+    private Vector2 respawnPoint;
     private Vector2 slopeNormalPerp;
 
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
+    private GameObject fallDetector;
 
     private void Start()
     {
@@ -51,12 +52,16 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
 
         capsuleColliderSize = cc.size;
+
+        respawnPoint = transform.position;
     }
 
     private void Update()
     {
         CheckInput();
-   
+
+        // RESPAWN
+        // fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
     }
 
     private void FixedUpdate()
@@ -219,6 +224,28 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Trap")
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex);
+
+        }
+        if (collision.gameObject.tag == "Finish")
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "FallDetector")
+        {
+            transform.position = respawnPoint;
+        }
     }
 
 }
