@@ -14,13 +14,13 @@ public class myTimer : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+        textDisplay.GetComponent<Text>().text = "0" + secondsLeft;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (takingAway == false && secondsLeft > 0)
+        if (takingAway == false && secondsLeft >= 0)
         {
             StartCoroutine(TimerTake());
         }
@@ -30,18 +30,18 @@ public class myTimer : MonoBehaviour
     {
         takingAway = true;
         yield return new WaitForSeconds(1);
-        secondsLeft -= 1;
+        secondsLeft += 1;
         if (secondsLeft < 10)
         {
-            textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
+            textDisplay.GetComponent<Text>().text = "0" + secondsLeft;
         }
         else
         {
-            textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+            textDisplay.GetComponent<Text>().text = "" + secondsLeft;
         }
         takingAway = false;
 
-        if (secondsLeft <= 0)
+        if (secondsLeft >= 120)
         {
             TimeIsUp();
         }
