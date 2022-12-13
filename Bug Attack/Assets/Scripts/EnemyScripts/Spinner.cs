@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
-    [SerializeField] GameObject spinnignObject;
-    [SerializeField] float speed = 0.1f;
+    private float rotz;
+    public float rotationSpeed;
+    public bool clockwiseRotation;
+
+
 
     // Update is called once per frame
     void Update()
     {
-        spinnignObject.transform.Rotate(0.0f, 0.0f, speed, Space.World);
-    }
+        if (clockwiseRotation == false)
+            rotz += Time.deltaTime * rotationSpeed;
+        else
+            rotz += -Time.deltaTime * rotationSpeed;
+        transform.rotation = Quaternion.Euler(0, 0, rotz);
+
+    }   
 }
