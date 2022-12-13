@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CheckInput();
+   
     }
 
     private void FixedUpdate()

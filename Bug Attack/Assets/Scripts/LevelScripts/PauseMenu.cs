@@ -6,16 +6,30 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    public static bool GameIsPaused = false;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPaused)
+                Resume();
+            else
+                Pause();
+        }
+
+    }
     public void Pause()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+         Debug.Log("Pause");
+         pauseMenu.SetActive(true);
+         Time.timeScale = 0f;
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
+        GameIsPaused = false;
         Time.timeScale = 1f;
     }
 
