@@ -2535,6 +2535,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17916f8a73a4bd5429ff1f6dd60041cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  startingHealth: 3
+--- !u!114 &1769419841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769419828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: New Category
+    m_Hash: 0
+    m_CategoryList: []
+  m_SpriteLibraryAsset: {fileID: 0}
+>>>>>>> b671dc4a52db588d50090157aba4700591e2885e
 --- !u!1 &1775818647
 GameObject:
   m_ObjectHideFlags: 0
