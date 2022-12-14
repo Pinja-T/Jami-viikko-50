@@ -4,24 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed;
-    [SerializeField]
-    private float groundCheckRadius;
-    [SerializeField]
-    private float jumpForce;
-    [SerializeField]
-    private float slopeCheckDistance;
-    [SerializeField]
-    private float maxSlopeAngle;
-    [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
-    private LayerMask whatIsGround;
-    [SerializeField]
-    private PhysicsMaterial2D noFriction;
-    [SerializeField]
-    private PhysicsMaterial2D fullFriction;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float groundCheckRadius;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float slopeCheckDistance;
+    [SerializeField] private float maxSlopeAngle;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private PhysicsMaterial2D noFriction;
+    [SerializeField] private PhysicsMaterial2D fullFriction;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource DieSoundEffect;
+    
 
     private float xInput;
     private float slopeDownAngle;
@@ -45,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
     private GameObject fallDetector;
+
 
     private void Start()
     {
@@ -191,6 +186,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = newVelocity;
             newForce.Set(0.0f, jumpForce);
             rb.AddForce(newForce, ForceMode2D.Impulse);
+            jumpSoundEffect.Play();
         }
     }
 
@@ -244,6 +240,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "FallDetector")
         {
+
             transform.position = respawnPoint;
         }
     }

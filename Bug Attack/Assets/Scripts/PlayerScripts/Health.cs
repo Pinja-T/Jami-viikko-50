@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
+    [SerializeField] private AudioSource gameOverSound;
+    private float timeElapsed;
+
     public float currentHealth { get; private set; }
 
     private void Awake()
@@ -24,12 +27,25 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Player Dead
+           // Die();
+            gameOverSound.Play();
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene("Menu");
+            StartCoroutine(WaitSceneToLoad());
+           // Destroy(this.gameObject);
 
             // TODO: ADD DEATH SCREEN
         }
     }
 
+    private IEnumerator WaitSceneToLoad()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Menu");
+
+    }
+    //private void Die()
+    //{
+    //    gameObject.SetActive(false);
+    //}
 
 }
