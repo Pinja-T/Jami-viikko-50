@@ -39,12 +39,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
     private GameObject fallDetector;
-
+    Animator anim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
+        anim = GetComponent<Animator>();
 
         capsuleColliderSize = cc.size;
 
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CheckInput();
-
+        
         // RESPAWN
         // fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
     }
@@ -68,7 +69,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
+        xInput = Input.GetAxisRaw("Horizontal"); // * movementSpeed * Time.deltaTime;
+        //transform.position = new Vector2(transform.position.x + xInput, transform.position.y);
+
 
         if (xInput == 1 && facingDirection == -1)
         {
@@ -82,9 +85,26 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+            Animations();
+        }
+    }
+
+    private void Animations()
+    {
+        if (xInput != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump"))
+            anim.SetBool("isWalking", true);
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
 
+        if (Input.GetButtonDown("Jump") && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump"))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetTrigger("jump");
+        }
     }
+
     private void CheckGround()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -194,7 +214,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && !isOnSlope && !isJumping) //if not on slope
         {
-            Debug.Log("This one");
             newVelocity.Set(movementSpeed * xInput, 0.0f);
             rb.velocity = newVelocity;
         }
