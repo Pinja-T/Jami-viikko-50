@@ -11,9 +11,15 @@ public class LevelLoader : MonoBehaviour
     void Update()
     {
         //if (Input.GetMouseButtonDown(0))
-        LoadNextLevel();
+        
     }
-
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            LoadNextLevel();
+        }
+    }
     public void LoadNextLevel()
     {
        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));

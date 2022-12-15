@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
     private IEnumerator WaitSceneToLoad()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Death");
 
     }
     //private void Die()
