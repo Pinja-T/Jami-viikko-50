@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
         {
             // Player Dead
            // Die();
-            gameOverSound.Play();
+            
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             StartCoroutine(WaitSceneToLoad());
            // Destroy(this.gameObject);
@@ -39,8 +39,9 @@ public class Health : MonoBehaviour
 
     private IEnumerator WaitSceneToLoad()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
         SceneManager.LoadScene("Death");
+        //gameOverSound.Play();
 
     }
     //private void Die()
