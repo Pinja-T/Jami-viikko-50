@@ -2889,7 +2889,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1955887162204794361, guid: 1f93d99d7eec28d4b89a6bece559d0e7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1955887162204794361, guid: 1f93d99d7eec28d4b89a6bece559d0e7, type: 3}
       propertyPath: bugInterval
