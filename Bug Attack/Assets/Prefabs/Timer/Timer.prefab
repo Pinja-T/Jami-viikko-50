@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3562209037172865734}
   - component: {fileID: 3562209037172865729}
+  - component: {fileID: 1889957196}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -39,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3562209037172865728}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e93fa7e776a925248b122d192fe80409, type: 3}
   m_Name: 
@@ -47,3 +48,17 @@ MonoBehaviour:
   textDisplay: {fileID: 0}
   secondsLeft: 0
   takingAway: 0
+--- !u!114 &1889957196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562209037172865728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cac8bdda90efb44a751f6fce64b4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  score: 0
